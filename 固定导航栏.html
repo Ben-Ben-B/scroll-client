@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            vertical-align: top;
+        }
+        .main {
+            margin: 0 auto;
+            width: 1000px;
+            margin-top: 10px;
+
+        }
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .top {
+            margin: 0 auto;
+            width: 1423px;
+        }
+        .nav {
+            width: 100%;
+        }
+        #navBar {
+            width: 1423px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="top" id="topPart">
+    <img src="img/top.png" alt=""/>
+</div>
+<div class="nav" id="nav">
+    <div id="navBar">
+        <img src="img/nav.png" alt=""/>
+    </div>
+</div>
+<div class="main" id="mainPart">
+    <img src="img/main.png" alt=""/>
+</div>
+<script>
+    var topPart=document.getElementById("topPart");
+    var nav=document.getElementById("nav");
+    var navBar=nav.children[0];
+    var mainPart=document.getElementById("mainPart");
+    function getScroll(){
+        return {
+            top:window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0,
+            left:window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft||0
+        }
+    }
+    window.onscroll=function(){
+        var scrollTop=getScroll().top;
+        var maxHeight=topPart.offsetHeight+nav.offsetHeight;
+        if(scrollTop>=maxHeight){
+            nav.className="nav fixed";
+           mainPart.style.paddingTop=nav.offsetHeight+"px";
+        }else{
+            nav.className="nav";
+            mainPart.style.paddingTop=0+"px";
+        }
+    }
+</script>
+</body>
+</html>
